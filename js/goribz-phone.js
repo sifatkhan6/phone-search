@@ -62,6 +62,7 @@ const displayPhoneDetails = phoneDetail => {
     
     // adding details 
     const div = document.createElement('div');
+    
     div.classList.add('card');
     div.innerHTML = `
     <img src="${phoneDetail.image}" class="card-img-top w-50 mx-auto" alt="...">
@@ -91,6 +92,6 @@ const displayPhoneDetails = phoneDetail => {
     </div>
     </div>
     `;
-
+    
     phoneDetails.appendChild(div);
 }
