@@ -2,6 +2,7 @@ const searchPhone = () => {
     const searchFeild = document.getElementById("search-feild");
     const searchText = searchFeild.value;
 
+    // clear data 
     searchFeild.value = '';
 
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
@@ -11,8 +12,14 @@ const searchPhone = () => {
     
     const displaySearchResult = phones => {
         const searchResult = document.getElementById('search-result');
+        searchResult.textContent = '';
+
+        if(phones.length == 0){
+            const noResult = document.getElementById('no-result');
+            noResult.style.display = "block";
+        }
+        else{
             phones.forEach(phone => {
-                // console.log(phone);
                 const div = document.createElement('div');
                 div.classList.add('col');
                 div.innerHTML = `
@@ -28,7 +35,11 @@ const searchPhone = () => {
                 `;
 
                 searchResult.appendChild(div);
+
+                const noResult = document.getElementById('no-result');
+                noResult.style.display = "none";
             })
+        }
     }
      
 }
@@ -59,8 +70,14 @@ const displayPhoneDetails = phoneDetail => {
         <p class="card-text">Radio: ${phoneDetail.others.Radio}</p>
         <p class="card-text">USB: ${phoneDetail.others.USB}</p>
         <p class="card-text">WLAN: ${phoneDetail.others.WLAN}</p>
+        <p class="card-text">${phoneDetail.releaseDate}</p>
+    </div>
+    </div>
+    `;
+    phoneDetails.appendChild(div);
+}
 
-        // <p class="card-text">
+// <p class="card-text">
 
         //     if(phoneDetail.releaseDate === ''){
         //         <p class="card-text">No release date found</p>
@@ -71,8 +88,3 @@ const displayPhoneDetails = phoneDetail => {
         // </p>
 
         // <button onclick="" type="button" class="btn btn-secondary btn-sm">Show More</button>
-    </div>
-    </div>
-    `;
-    phoneDetails.appendChild(div);
-}
