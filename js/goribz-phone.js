@@ -8,8 +8,9 @@ const searchPhone = () => {
     const url = `https://openapi.programming-hero.com/api/phones?search=${searchText}`;
     fetch(url)
     .then(res => res.json())
-    .then(data => displaySearchResult(data.data));
+    .then(data => displaySearchResult(data.data.slice(0, 20)));
     
+    // result showing
     const displaySearchResult = phones => {
         const searchResult = document.getElementById('search-result');
         searchResult.textContent = '';
@@ -45,7 +46,7 @@ const searchPhone = () => {
 }
 
 const loadPhoneDetails = mainFeatures => {
-    // console.log(mainFeatures);
+    console.log(mainFeatures);
     const url = ` https://openapi.programming-hero.com/api/phone/${mainFeatures}`;
     fetch(url)
     .then(res => res.json())
